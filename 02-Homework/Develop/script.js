@@ -61,7 +61,7 @@ var arrayUpperCase = [
   "Z",
 ];
 
-var arrayNumericase = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var arrayNumericase = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 var arraySpecialCharacter = [
   "!",
@@ -106,7 +106,7 @@ function writePassword(event) {
     len = parseInt(len);
 
     //IF Llength greater than 8 an dless than 128 and it should be a number
-    if (len <= 8 || len >= 128 || isNaN(len)) {
+    if (len < 8 || len > 128 || isNaN(len)) {
       return alert("Invaild entry");
     }
 
