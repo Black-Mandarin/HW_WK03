@@ -92,9 +92,10 @@ var arraySpecialCharacter = [
   "~",
 ];
 
-function writePassword() {
+function writePassword(event) {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  passwordText.textContent = password;
 
   function generatePassword() {
     // Password Length Prompt
@@ -105,58 +106,61 @@ function writePassword() {
     len = parseInt(len);
 
     //IF Llength greater than 8 an dless than 128 and it should be a number
-    if(len >= 8 && len <= 128 && !isNaN(len)) {
-      
-      //this is positive scenario
-      var upperCase = window.confirm(
-        "Password Criteria: Would you like UpperCase"
-      );
-  
-      //LowerCase
-      var lowerCase = window.confirm(
-        "Password Criteria: Would you like LowerCase"
-      );
-  
-      //Numeric Value
-      var numericCase = window.confirm(
-        "Password Criteria: Would you like NumericCase"
-      );
-  
-      //Special Character
-      var specialCase = window.confirm(
-        "Password Criteria: Would you like Special Characters"
-      );
+    if (len <= 8 || len >= 128 || isNaN(len)) {
+      return alert("Invaild entry");
+    }
 
-      var allowedChars = '';
+    //this is positive scenario
+    var upperCase = window.confirm(
+      "Password Criteria: Would you like UpperCase"
+    );
 
-      if(!upperCase && !lowerCase && !numericCase && !specialCase){
-        alert("No Vaild Password Crietra")
-      }
-      else {
-       if( upperCase === true ) { allowedChars += arrayUpperCase.toString()
-       }
-       else {
-         if( lowerCase === true) {allowedChars += arrayLowerCase.toString()
-       }
-       else{
-         if(numericCase === true) {allowedChars += arrayNumericase.toString()
-       }
-       else{
-         if(specialCase === true) {allowedChars += arrayspecialCase.toString()
-       }
-       else  {
-        //negative scenario
-        window.alert("Invaild Length");
-      }     
+    //LowerCase
+    var lowerCase = window.confirm(
+      "Password Criteria: Would you like LowerCase"
+    );
+
+    //Numeric Value
+    var numericCase = window.confirm(
+      "Password Criteria: Would you like NumericCase"
+    );
+
+    //Special Character
+    var specialCase = window.confirm(
+      "Password Criteria: Would you like Special Characters"
+    );
+
+    var allowedChars = "";
+
+    if (!upperCase && !lowerCase && !numericCase && !specialCase) {
+      return alert("No Vaild Password Crietra");
+    }
+
+    if (upperCase === true) {
+      allowedChars += arrayUpperCase.toString();
+    }
+
+    if (lowerCase === true) {
+      allowedChars += arrayLowerCase.toString();
+    }
+
+    if (numericCase === true) {
+      allowedChars += arrayNumericase.toString();
+    }
+
+    if (specialCase === true) {
+      allowedChars += arraySpecialCharacter.toString();
     }
 
     var allowedCharLen = allowedChars.length;
-    for (i = 0; i < len; i ++){
+    var result = "";
+    for (let i = 0; i < len; i++) {
       result += allowedChars.charAt(Math.floor(Math.random() * allowedCharLen));
     }
 
+    return result;
+  }
 }
 
 // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword){
-   passwordText.textContent = writePassword(allowedCharLen)};
+generateBtn.addEventListener("click", writePassword);
