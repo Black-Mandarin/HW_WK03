@@ -137,28 +137,31 @@ function writePassword(event) {
     }
 
     if (upperCase === true) {
-      allowedChars += arrayUpperCase.toString();
+      allowedChars += arrayUpperCase.join("");
     }
 
     if (lowerCase === true) {
-      allowedChars += arrayLowerCase.toString();
+      allowedChars += arrayLowerCase.join("");
     }
 
     if (numericCase === true) {
-      allowedChars += arrayNumericase.toString();
+      allowedChars += arrayNumericase.join("");
     }
 
     if (specialCase === true) {
-      allowedChars += arraySpecialCharacter.toString();
+      allowedChars += arraySpecialCharacter.join("");
     }
 
     var allowedCharLen = allowedChars.length;
     var result = "";
+
     for (let i = 0; i < len; i++) {
       result += allowedChars.charAt(Math.floor(Math.random() * allowedCharLen));
     }
 
     return result;
+
+    console.log(result);
   }
 }
 
